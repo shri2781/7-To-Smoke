@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>7-to-smoke</title>
+    <link rel="icon" href="festember.jpg">
+</head>
+<body>
+    <div id="title">
+        <h1>7 to Smoke</h1>
+    </div>
+    <div id="bottom-container"> <div id="up"> 
+        <h1 id="heading">Participant's Data</h1>
+
+        <form name="inputs">
+        <br>
+            <div id="three">
+                <!--result will come here-->
+            </div>
+            <div id="two">
+                <!--the next fixture will come here-->
+            </div>
+            <div id="one">
+                    <label>Name: </label> <br><input type="text" class="name" name="name" autocomplete="off" placeholder="Enter Name"> <br>
+                    <label>College: </label> <br><input type="text" class="college" name="college" autocomplete="off" placeholder="Enter College Name"><br>
+                    <br><br>
+                    <input class="addData" type="button" name="add" value="Add Data" onclick="addParticipant()">
+            </div> 
+    </div>
+    <div id="down">
+            <div id="table">
+                <h1 id="scoreboard">Scoreboard</h1>
+
+                <center>
+                <main id="tbl" class="table">
+                    <!--table gets stored here-->
+                </main>
+                </center>
+            </div>
+        </form>
+    </div></div>
+    
+</body>
+</html>
+
+<script src="main.js"> </script>
+<link rel="stylesheet" href="style.css">
