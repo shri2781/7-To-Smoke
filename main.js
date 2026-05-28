@@ -17,7 +17,8 @@ var l=[0,1,2,3,4,5,6,7]
 var points={0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0}
 var names=[]
 var colleges=[]
-
+//total count for rounds is 27
+var round_count=0
 //code for team0 vs team2 and entering 0 or 1
 var div = document.createElement('div')
 
@@ -88,6 +89,15 @@ function change(n){
     l.push(l[n])
     l.splice(n,1)
     points[l[0]]++  
+    round_count++;
+    if(round_count==27){
+        document.getElementById("two").remove()
+        document.getElementById("heading").textContent="27 battles have been completed!"
+        var h = document.createElement('h1')
+        h.id="result"
+        h.textContent="Top 2 teams with the highest score win"
+        document.getElementById("three").appendChild(h)
+    }
     if(points[l[[0]]]==7){
         document.getElementById("two").remove()
         document.getElementById("heading").textContent="Congratulations!"
