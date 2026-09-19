@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "concurrently -n server,client -c blue,green \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "tsx watch --clear-screen=false src/server/index.ts",
@@ -11,6 +14,7 @@
     "build:client": "vite build",
     "build:server": "tsup",
     "start": "node dist/server/index.js",
+    "vercel-build": "prisma migrate deploy && npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "prisma:migrate": "prisma migrate dev",
@@ -22,6 +26,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.client.json && tsc --noEmit -p tsconfig.server.json"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@prisma/adapter-neon": "6.19.3",
     "@prisma/client": "^6.3.1",
     "@tanstack/react-query": "^5.66.0",
     "cookie-parser": "^1.4.7",
@@ -33,6 +39,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
+    "ws": "^8.21.3",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -43,6 +50,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/supertest": "^6.0.2",
+    "@types/ws": "^8.18.1",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.2",
     "fast-check": "^3.23.2",

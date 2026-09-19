@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { api, ApiClientError, NetworkError } from '../api/client.js';
-import type { TournamentState } from '../api/types.js';
+import { api, ApiClientError, NetworkError } from '../apiClient/client.js';
+import type { TournamentState } from '../apiClient/types.js';
 import { optimisticallyApplyMatch } from '../lib/reconstructEngine.js';
 import {
   enqueueMatchSubmission,

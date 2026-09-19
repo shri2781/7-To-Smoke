@@ -4,9 +4,9 @@
 // persisted to localStorage and retried with backoff until they land or
 // the server tells us they're stale — at which point they're dropped and
 // the caller re-syncs from the server's authoritative state.
-import { api } from '../api/client.js';
-import { NetworkError } from '../api/client.js';
-import type { TournamentState } from '../api/types.js';
+import { api } from '../apiClient/client.js';
+import { NetworkError } from '../apiClient/client.js';
+import type { TournamentState } from '../apiClient/types.js';
 
 export type QueuedMatchSubmission = {
   id: string;

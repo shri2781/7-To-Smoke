@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDancers, useCreateDancer, useDeleteDancer } from '../hooks/useDancers.js';
-import { ApiClientError } from '../api/client.js';
+import { ApiClientError } from '../apiClient/client.js';
 import { PageHeader } from '../components/PageHeader.js';
 import { TextInput } from '../components/Input.js';
 import { Button } from '../components/Button.js';

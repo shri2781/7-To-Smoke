@@ -9,7 +9,7 @@ import { MatchLog } from '../components/MatchLog.js';
 import { OfflineBanner } from '../components/OfflineBanner.js';
 import { ConfirmDialog } from '../components/ConfirmDialog.js';
 import { Button } from '../components/Button.js';
-import type { TournamentState } from '../api/types.js';
+import type { TournamentState } from '../apiClient/types.js';
 import styles from './Game.module.css';
 
 type PendingAction =
