@@ -1,5 +1,5 @@
 // Seeds a roster plus one fully-played, completed tournament, so History
-// and the Leaderboard have something to show before those screens exist.
+// has something to show before that screen exists.
 // Run with: npm run seed
 import { PrismaClient, Prisma } from '@prisma/client';
 import { computeState } from '../src/shared/engine.js';

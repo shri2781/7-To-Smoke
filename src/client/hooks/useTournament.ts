@@ -40,7 +40,6 @@ function setTournamentEverywhere(queryClient: ReturnType<typeof useQueryClient>,
     queryClient.setQueryData(['tournament', 'active'], undefined);
   }
   queryClient.invalidateQueries({ queryKey: ['tournaments'] });
-  queryClient.invalidateQueries({ queryKey: ['leaderboard'] });
 }
 
 /** Wires the offline queue's background flush results back into the
@@ -166,7 +165,6 @@ export function useDeleteTournament() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tournaments'] });
       queryClient.invalidateQueries({ queryKey: ['tournament', 'active'] });
-      queryClient.invalidateQueries({ queryKey: ['leaderboard'] });
     },
   });
 }

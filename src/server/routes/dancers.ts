@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { dancerCreateSchema, dancerUpdateSchema } from '@shared/schemas.js';
 import { prisma } from '../db.js';
-import { ApiError, asyncHandler, notFound } from '../lib/errors.js';
+import { asyncHandler, notFound } from '../lib/errors.js';
 import { requireParam } from '../lib/params.js';
 
 export const dancersRouter = Router();
@@ -9,11 +9,7 @@ export const dancersRouter = Router();
 dancersRouter.get(
   '/',
   asyncHandler(async (req, res) => {
-    const includeRetired = req.query.includeRetired === 'true';
-    const dancers = await prisma.dancer.findMany({
-      where: includeRetired ? {} : { deletedAt: null },
-      orderBy: { name: 'asc' },
-    });
+    const dancers = await prisma.dancer.findMany({ orderBy: { name: 'asc' } });
     res.json(dancers);
   }),
 );
@@ -42,24 +38,5 @@ dancersRouter.patch(
       },
     });
     res.json(dancer);
-  }),
-);
-
-dancersRouter.delete(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const id = requireParam(req, 'id');
-    const existing = await prisma.dancer.findUnique({ where: { id } });
-    if (!existing) throw notFound('Dancer not found.');
-
-    const inActiveTournament = await prisma.participant.findFirst({
-      where: { dancerId: id, tournament: { status: 'in_progress' } },
-    });
-    if (inActiveTournament) {
-      throw new ApiError(409, 'DANCER_IN_USE', 'This dancer is in the active tournament and cannot be deleted.');
-    }
-
-    await prisma.dancer.update({ where: { id }, data: { deletedAt: new Date() } });
-    res.status(204).end();
   }),
 );

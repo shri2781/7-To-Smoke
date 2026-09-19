@@ -100,7 +100,7 @@ export function Game() {
           {state.phase === 'awaiting_manual_winner' && state.status === 'in_progress' ? (
             <div className={styles.capNotice}>
               {state.maxMatches} bouts of regulation are complete and nobody reached {state.targetScore}. Tap "Crown a
-              champion" below and pick a name from the standings — the app won't guess a tiebreak for you.
+              champion" below and pick a name from the standings, the app won't guess a tiebreak for you.
             </div>
           ) : null}
 
@@ -187,7 +187,7 @@ export function Game() {
           title="Undo last bout?"
           body={
             state.status === 'completed'
-              ? 'This was the deciding bout — undoing it will re-open the tournament and clear the result.'
+              ? 'This was the deciding bout, undoing it will re-open the tournament and clear the result.'
               : 'This removes the most recently recorded result. This cannot be redone.'
           }
           confirmLabel="Undo"
@@ -203,7 +203,7 @@ export function Game() {
       {pending?.type === 'abandon' ? (
         <ConfirmDialog
           title="Abandon this tournament?"
-          body="It will be excluded from the all-time leaderboard, but stays visible in Past Games and can be resumed later."
+          body="It stays visible in Past Games and can be resumed later."
           confirmLabel="Abandon"
           danger
           onCancel={() => setPending(null)}

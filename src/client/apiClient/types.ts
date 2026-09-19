@@ -36,19 +36,5 @@ export type Dancer = {
   id: string;
   name: string;
   crew: string | null;
-  deletedAt: string | null;
   createdAt: string;
-};
-
-export type LeaderboardRow = {
-  dancerId: string;
-  name: string;
-  crew: string | null;
-  retired: boolean;
-  tournamentsPlayed: number;
-  titles: number;
-  matchesPlayed: number;
-  wins: number;
-  losses: number;
-  winRate: number;
 };

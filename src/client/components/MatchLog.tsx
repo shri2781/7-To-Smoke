@@ -11,7 +11,7 @@ export function MatchLog({ log }: { log: MatchLogEntry[] }) {
           <div key={entry.matchNumber} className={styles.entry}>
             <span className={styles.num}>#{entry.matchNumber}</span>
             <span>
-              {entry.kingName} vs {entry.challengerName} — <span className={styles.winner}>{entry.winnerName}</span>{' '}
+              {entry.kingName} vs {entry.challengerName}, <span className={styles.winner}>{entry.winnerName}</span>{' '}
               wins ({entry.winnerScoreAfter})
             </span>
             {entry.throneChanged ? <span className={styles.throne}>Throne changed</span> : null}

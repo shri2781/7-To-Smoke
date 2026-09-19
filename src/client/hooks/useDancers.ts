@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '../apiClient/client.js';
 
-export function useDancers(includeRetired = false) {
+export function useDancers() {
   return useQuery({
-    queryKey: ['dancers', includeRetired],
-    queryFn: () => api.dancers.list(includeRetired),
+    queryKey: ['dancers'],
+    queryFn: () => api.dancers.list(),
   });
 }
 
@@ -21,14 +21,6 @@ export function useUpdateDancer() {
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: { name?: string; crew?: string | null } }) =>
       api.dancers.update(id, data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dancers'] }),
-  });
-}
-
-export function useDeleteDancer() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (id: string) => api.dancers.remove(id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dancers'] }),
   });
 }

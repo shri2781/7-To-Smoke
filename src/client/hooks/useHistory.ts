@@ -7,10 +7,3 @@ export function useTournamentHistory(status?: string) {
     queryFn: () => api.tournaments.list({ status, limit: 30 }),
   });
 }
-
-export function useLeaderboard() {
-  return useQuery({
-    queryKey: ['leaderboard'],
-    queryFn: () => api.stats.leaderboard(),
-  });
-}

@@ -227,36 +227,4 @@ d('API integration', () => {
     expect(declared.status).toBe(200);
     expect(declared.body.endReason).toBe('cap_reached_manual');
   }, 60_000);
-
-  it('reports the leaderboard from completed tournaments only', async () => {
-    const res = await agent.get('/api/stats/leaderboard');
-    expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
-    const totalWins = res.body.reduce((sum: number, r: { wins: number }) => sum + r.wins, 0);
-    expect(totalWins).toBeGreaterThan(0);
-  });
-
-  it('prevents deleting a dancer who is in the active tournament', async () => {
-    // Deterministic regardless of what earlier tests left behind: abandon
-    // any active tournament, then start a known-fresh one to test against.
-    const active = await agent.get('/api/tournaments/active');
-    if (active.status === 200) {
-      await agent.post(`/api/tournaments/${active.body.id}/abandon`);
-    }
-
-    const roster = await agent.get('/api/dancers');
-    const ids = roster.body.map((d: { id: string }) => d.id);
-    const created = await agent.post('/api/tournaments').send({
-      name: 'Guard Test',
-      targetScore: 7,
-      maxMatches: 27,
-      participants: ids.map((dancerId: string) => ({ dancerId })),
-    });
-    expect(created.status).toBe(201);
-
-    const someParticipantDancerId: string = created.body.standings[0].dancerId;
-    const res = await agent.delete(`/api/dancers/${someParticipantDancerId}`);
-    expect(res.status).toBe(409);
-    expect(res.body.error.code).toBe('DANCER_IN_USE');
-  });
 });

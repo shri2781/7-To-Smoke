@@ -1,4 +1,4 @@
-import type { Dancer, LeaderboardRow, TournamentState, TournamentSummary } from './types.js';
+import type { Dancer, TournamentState, TournamentSummary } from './types.js';
 
 export class ApiClientError extends Error {
   status: number;
@@ -67,13 +67,11 @@ export const api = {
     me: () => request<{ authed: boolean }>('/auth/me'),
   },
   dancers: {
-    list: (includeRetired = false) =>
-      request<Dancer[]>(`/dancers${includeRetired ? '?includeRetired=true' : ''}`),
+    list: () => request<Dancer[]>('/dancers'),
     create: (data: { name: string; crew?: string | null }) =>
       request<Dancer>('/dancers', { method: 'POST', body: json(data) }),
     update: (id: string, data: { name?: string; crew?: string | null }) =>
       request<Dancer>(`/dancers/${id}`, { method: 'PATCH', body: json(data) }),
-    remove: (id: string) => request<void>(`/dancers/${id}`, { method: 'DELETE' }),
   },
   tournaments: {
     active: () => request<TournamentState | undefined>('/tournaments/active'),
@@ -117,14 +115,5 @@ export const api = {
     resume: (tournamentId: string) =>
       request<TournamentState>(`/tournaments/${tournamentId}/resume`, { method: 'POST' }),
     remove: (tournamentId: string) => request<void>(`/tournaments/${tournamentId}`, { method: 'DELETE' }),
-  },
-  stats: {
-    leaderboard: (params?: { includeRetired?: boolean; since?: string }) => {
-      const qs = new URLSearchParams();
-      if (params?.includeRetired) qs.set('includeRetired', 'true');
-      if (params?.since) qs.set('since', params.since);
-      const suffix = qs.toString() ? `?${qs}` : '';
-      return request<LeaderboardRow[]>(`/stats/leaderboard${suffix}`);
-    },
   },
 };

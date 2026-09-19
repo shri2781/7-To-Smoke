@@ -8,7 +8,6 @@ import { requireAuth } from './auth.js';
 import { authRouter } from './routes/auth.js';
 import { dancersRouter } from './routes/dancers.js';
 import { tournamentsRouter } from './routes/tournaments.js';
-import { statsRouter } from './routes/stats.js';
 import { errorMiddleware, jsonNotFound } from './lib/errors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,7 +44,6 @@ export function createApp() {
   // Everything else under /api requires the admin passcode.
   app.use('/api/dancers', requireAuth, dancersRouter);
   app.use('/api/tournaments', requireAuth, tournamentsRouter);
-  app.use('/api/stats', requireAuth, statsRouter);
 
   // A typo'd /api/* path should 404 as JSON, not fall through to index.html
   // and blow up the client's res.json() with a confusing parse error.

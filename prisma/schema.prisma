@@ -30,17 +30,14 @@ enum EndReason {
 
 /// The reusable global roster. A Dancer is never hard-deleted — a past
 /// tournament's Participant rows snapshot the name/crew at the time, so
-/// renaming or retiring a Dancer never rewrites history.
+/// renaming a Dancer never rewrites history.
 model Dancer {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   crew      String?
-  deletedAt DateTime?
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   participations Participant[]
-
-  @@index([deletedAt])
 }
 
 /// One tournament run. Created (and immediately set in_progress) only when

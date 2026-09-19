@@ -17,9 +17,9 @@ export function Rules() {
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>How a battle works</h2>
           <p>
-            One dancer starts as king, one as the first challenger; everyone else waits in a queue. After every bout
-            the loser goes to the back of the queue — the winner stays (or becomes) king and earns one point. The
-            next challenger is always whoever is at the front of the waiting line.
+            One dancer starts as defender, one as the first challenger; everyone else waits in a queue. After every
+            bout the loser goes to the back of the queue, the winner stays (or becomes) defender and earns one point.
+            The next challenger is always whoever is at the front of the waiting line.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export function Rules() {
           <h2 className={styles.cardTitle}>How it ends</h2>
           <ol>
             <li>
-              <strong>First to the target score wins outright</strong> (default: first to 7) — the app declares this
+              <strong>First to the target score wins outright</strong> (default: first to 7), the app declares this
               automatically the instant it happens.
             </li>
             <li>
@@ -36,7 +36,7 @@ export function Rules() {
               the standings to crown the champion.
             </li>
             <li>
-              An admin can also end a tournament early at any time the same way — tap "Crown a champion" on the
+              An admin can also end a tournament early at any time the same way, tap "Crown a champion" on the
               Scoreboard screen.
             </li>
           </ol>
@@ -44,7 +44,7 @@ export function Rules() {
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>How the standings are ordered</h2>
-          <p>This ranking is for display only — it never decides the champion by itself. Ties break in this order:</p>
+          <p>This ranking is for display only, it never decides the champion by itself. Ties break in this order:</p>
           <ol>
             <li>Total wins</li>
             <li>Head-to-head record against opponents tied on wins</li>
@@ -59,15 +59,15 @@ export function Rules() {
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Undo, abandon, and history</h2>
           <ul>
-            <li>Undo removes only the most recent bout — including the one that just ended the tournament.</li>
-            <li>Abandoning a tournament keeps it in Past Games but excludes it from the All Time leaderboard.</li>
-            <li>Renaming or retiring a dancer never changes how their name appears in a past recap.</li>
+            <li>Undo removes only the most recent bout, including the one that just ended the tournament.</li>
+            <li>Abandoning a tournament keeps it visible in Past Games.</li>
+            <li>Renaming a dancer never changes how their name appears in a past recap.</li>
           </ul>
         </div>
 
         <div className={`${styles.card} ${styles.dangerCard}`}>
           <h2 className={styles.cardTitle}>Danger zone</h2>
-          <p>Permanently delete a tournament and its full match log. This cannot be undone — use it only for test runs.</p>
+          <p>Permanently delete a tournament and its full match log. This cannot be undone, use it only for test runs.</p>
           {(data?.items ?? []).map((t) => (
             <div key={t.id} className={styles.dangerRow}>
               <span>

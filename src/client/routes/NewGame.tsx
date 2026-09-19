@@ -69,7 +69,7 @@ export function NewGame() {
       navigate(`/game/${state.id}`);
     } catch (err) {
       if (err instanceof ApiClientError && err.code === 'ACTIVE_TOURNAMENT_EXISTS') {
-        setError('A tournament is already in progress — finish, abandon, or resume it from Scoreboard first.');
+        setError('A tournament is already in progress, finish, abandon, or resume it from Scoreboard first.');
       } else if (err instanceof ApiClientError) {
         setError(err.message);
       } else {
@@ -136,7 +136,7 @@ export function NewGame() {
             {selected.length === 0 ? <p className={styles.hint}>Pick dancers from the roster on the left.</p> : null}
           </div>
           <p className={styles.hint}>
-            #1 is the opening king, #2 the first challenger. {selected.length}/{MAX_DANCERS} selected (minimum{' '}
+            #1 is the opening defender, #2 the first challenger. {selected.length}/{MAX_DANCERS} selected (minimum{' '}
             {MIN_DANCERS}).
           </p>
 
@@ -159,7 +159,7 @@ export function NewGame() {
             </Field>
           </div>
           <p className={styles.hint}>
-            If the cap is reached with nobody at the target, the app stops and asks you to tap the champion — it never
+            If the cap is reached with nobody at the target, the app stops and asks you to tap the champion, it never
             guesses a tiebreak for you.
           </p>
 

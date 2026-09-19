@@ -7,8 +7,6 @@ const TABS = [
   { to: '/new', label: 'New Game' },
   { to: '/game', label: 'Scoreboard' },
   { to: '/history', label: 'Past Games' },
-  { to: '/leaderboard', label: 'All Time' },
-  { to: '/dancers', label: 'Dancers' },
   { to: '/rules', label: 'Rules' },
 ];
 

@@ -38,7 +38,7 @@ export function Scoreboard({
                 <td>
                   <span className={styles.name}>
                     {s.name}
-                    {s.isKing ? <span className={`${styles.badge} ${styles.badgeKing}`}>King</span> : null}
+                    {s.isKing ? <span className={`${styles.badge} ${styles.badgeKing}`}>Defender</span> : null}
                     {s.isChallenger ? (
                       <span className={`${styles.badge} ${styles.badgeChallenger}`}>Challenger</span>
                     ) : null}
