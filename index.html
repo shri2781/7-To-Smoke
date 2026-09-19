@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>7-to-smoke</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 to Smoke</title>
     <link rel="icon" href="festember.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="title">
-        <h1>7 to Smoke</h1>
-    </div>
-    <div id="bottom-container"> <div id="up"> 
-        <h1 id="heading">Participant's Data</h1>
+    <header id="title">
+        <h1>7 <span>to</span> Smoke</h1>
+        <p id="subtitle">Last dancer standing takes the crown</p>
+    </header>
 
-        <form name="inputs">
-        <br>
-            <div id="three">
-                <!--result will come here-->
-            </div>
-            <div id="two">
-                <!--the next fixture will come here-->
-            </div>
-            <div id="one">
-                    <label>Name: </label> <br><input type="text" class="name" name="name" autocomplete="off" placeholder="Enter Name"> <br>
-                    <label>College: </label> <br><input type="text" class="college" name="college" autocomplete="off" placeholder="Enter College Name"><br>
-                    <br><br>
+    <main id="bottom-container">
+        <section id="up">
+            <h1 id="heading">Participant's Data</h1>
+
+            <form name="inputs">
+                <div id="three">
+                    <!--result will come here-->
+                </div>
+                <div id="two">
+                    <!--the next fixture will come here-->
+                </div>
+                <div id="one">
+                    <label>Name: </label>
+                    <input type="text" class="name" name="name" autocomplete="off" placeholder="Enter Name">
+                    <label>College: </label>
+                    <input type="text" class="college" name="college" autocomplete="off" placeholder="Enter College Name">
                     <input class="addData" type="button" name="add" value="Add Data" onclick="addParticipant()">
-            </div> 
-    </div>
-    <div id="down">
+                </div>
+            </form>
+        </section>
+
+        <section id="down">
             <div id="table">
                 <h1 id="scoreboard">Scoreboard</h1>
-
-                <center>
-                <main id="tbl" class="table">
-                    <!--table gets stored here-->
-                </main>
-                </center>
+                <div class="table-wrap">
+                    <table id="tbl" class="table">
+                        <!--table gets stored here-->
+                    </table>
+                </div>
             </div>
-        </form>
-    </div></div>
-    
+        </section>
+    </main>
+
+    <footer id="credits">
+        Made with <span class="heart">&#10084;</span> by Shriram
+    </footer>
+
+    <script src="main.js" defer></script>
 </body>
 </html>
-
-<script src="main.js"> </script>
-<link rel="stylesheet" href="style.css">

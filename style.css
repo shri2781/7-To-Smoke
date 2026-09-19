@@ -1,120 +1,235 @@
-/* General Styles */
+/* Design tokens */
+:root {
+    --bg: #0e0e10;
+    --bg-alt: #161618;
+    --surface: #1d1d20;
+    --surface-2: #26262a;
+    --gold: #f5c518;
+    --gold-dark: #d4a800;
+    --red: #e2001a;
+    --text-dim: #b9b9bd;
+    --border: rgba(245, 197, 24, 0.22);
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
 * {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'montserrat', sans-serif;
-    background-color: #1a1a1a; /* Dark background */
+html, body {
     margin: 0;
-    padding: 20px;
-    color: #f5c518; /* Gold color */
-    overflow: hidden;
-    width: 100vw;
-
-    height: 100vh;
+    padding: 0;
 }
 
-#scoreboard{
-    margin-left: 30px;
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--gold);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-
-/* Title Styles */
+/* Hero title */
 #title {
+    position: relative;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 64px 20px 44px;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 12, 0.6), rgba(10, 10, 12, 0.95)),
+        url("dance_bg.jpg") center 30% / cover no-repeat;
+    border-bottom: 3px solid var(--gold);
 }
 
 #title h1 {
-    font-size: 3em; /* Larger font size for prominence */
-    color: #f5c518; /* Gold color */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Adds depth with a shadow */
+    font-family: 'Anton', 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+    margin: 0;
+}
 
-    letter-spacing: 2px; /* Increases spacing between letters */
-    padding: 10px; /* Adds some padding for better spacing */
-    border-bottom: 1px solid #f5c518; /* Underline effect */
-    margin: 0; /* Remove default margin */
+#title h1 span {
+    color: var(--red);
 }
 
 #title h1:hover {
-    transform: scale(1.05); /* Slight scale effect on hover */
-    transition: transform 0.3s ease; /* Smooth transition */
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+    display: inline-block;
 }
-#bottom-container{
-    display: flex;
 
-    justify-content: space-between;
-    flex-direction: row;
-    width: 100%;
+#subtitle {
+    margin: 14px 0 0;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Main layout */
+#bottom-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
     align-items: start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px clamp(16px, 4vw, 48px) 48px;
 }
 
-#title h1 {
-    font-size: 2.5em;
-    color: #f5c518; /* Gold color */
+/* Cards */
+#up, #table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
 }
 
-/* Bottom Container Styles */
-#bottom {
+#heading, #scoreboard {
+    margin: 0 0 20px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* Participant entry form */
+#one {
     display: flex;
-    justify-content: space-between;
-}
-
-/* Form Styles */
-#up {
-    width: 48%;
-    background: #333333; /* Dark gray background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
 }
 
 label {
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    margin-top: 14px;
     display: block;
-    color: #f5c518; /* Gold color */
 }
 
-input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin: 5px 0 20px;
-    border: 1px solid #f5c518; /* Gold border */
-    border-radius: 4px;
-    background-color: #444; /* Darker input background */
-    color: #f5c518; /* Gold text */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--gold);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.15);
+}
+
+input::placeholder {
+    color: rgba(245, 197, 24, 0.4);
 }
 
 input[type="button"] {
-    background-color: #f5c518; /* Gold background */
-    color: #333; /* Dark text */
+    margin-top: 22px;
+    padding: 12px 20px;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #1a1a1a;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 input[type="button"]:hover {
-    background-color: #d4b00c; /* Darker gold on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 197, 24, 0.35);
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
 }
 
-#down {
-    width: 48%;
-  
+input[type="button"]:active {
+    transform: translateY(0);
 }
 
-/* Table Styles */
-#table {
-    background: #333333; /* Dark gray background */
-    padding: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+/* Current match ("VS") card, built by main.js */
+#two > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 22px;
 }
 
-.main {
+#two p {
+    flex: 1;
+    min-width: 100px;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--gold);
+}
+
+#vs {
+    flex: 0 0 auto;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: var(--red);
+}
+
+#two input[type="number"] {
+    width: 140px;
+    text-align: center;
+    margin-top: 0;
+}
+
+#two input[type="button"] {
+    margin-top: 0;
+}
+
+/* Result banner */
+#result {
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: var(--gold);
+    padding: 18px;
+    margin: 0 0 22px;
+    background: linear-gradient(135deg, rgba(245, 197, 24, 0.16), rgba(226, 0, 26, 0.16));
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Scoreboard table */
+.table-wrap {
     overflow-x: auto;
 }
 
@@ -123,45 +238,63 @@ table {
     border-collapse: collapse;
 }
 
-table, th, td {
-    border: 1px solid #f5c518; /* Gold border */
+tr.heading td {
+    padding: 12px 10px;
+    background: var(--surface-2);
+    color: var(--text-dim);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--gold);
 }
 
-th, td {
-    padding: 10px;
-    width: 28%;
-    text-align: left;
-    color: #f5c518; /* Gold text */
+tr.input_table td {
+    padding: 11px 10px;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
 }
 
-th {
-    background-color: #2c2c2c; /* Darker gray for headers */
+tr.input_table:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
 }
 
-tr:nth-child(even) {
-    background-color: #444; /* Darker gray for even rows */
+tr.input_table:hover {
+    background: rgba(245, 197, 24, 0.08);
 }
 
-tr:hover {
-    background-color: #555; /* Slightly lighter gray on hover */
+tr.input_table td:last-child {
+    font-weight: 700;
+    text-align: center;
 }
 
-/* Responsive Design */
+/* Footer */
+#credits {
+    text-align: center;
+    padding: 18px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+}
+
+#credits .heart {
+    color: var(--red);
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+    #bottom-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
-    input[type="text"], input[type="button"] {
-        width: 100%;
-    }
-
     #up, #table {
-        padding: 15px;
+        padding: 18px;
     }
 
-    #bottom {
-        flex-direction: column;
-    }
-
-    #up, #down {
-        width: 100%;
-        margin-bottom: 20px;
+    #title {
+        padding: 48px 16px 32px;
     }
 }
