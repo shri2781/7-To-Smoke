@@ -1,18 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../apiClient/client.js';
 
-export function useDancers() {
-  return useQuery({
-    queryKey: ['dancers'],
-    queryFn: () => api.dancers.list(),
-  });
-}
-
 export function useCreateDancer() {
-  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: api.dancers.create,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dancers'] }),
   });
 }
 

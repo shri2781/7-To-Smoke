@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDancers, useCreateDancer } from '../hooks/useDancers.js';
+import { useCreateDancer } from '../hooks/useDancers.js';
 import { useCreateTournament } from '../hooks/useTournament.js';
 import { ApiClientError } from '../apiClient/client.js';
 import { PosterHeader } from '../components/PosterHeader.js';
@@ -13,7 +13,6 @@ const MIN_DANCERS = 3;
 const MAX_DANCERS = 12;
 
 export function NewGame() {
-  const { data: dancers } = useDancers();
   const createDancer = useCreateDancer();
   const createTournament = useCreateTournament();
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ export function NewGame() {
   const [error, setError] = useState<string | null>(null);
 
   function addSelected(d: Dancer) {
-    if (selected.some((s) => s.id === d.id) || selected.length >= MAX_DANCERS) return;
+    if (selected.length >= MAX_DANCERS) return;
     setSelected((prev) => [...prev, d]);
   }
 
@@ -78,44 +77,24 @@ export function NewGame() {
     }
   }
 
-  const available = (dancers ?? []).filter((d) => !selected.some((s) => s.id === d.id));
-
   return (
     <>
       <PosterHeader subtitle="Set up the next battle" />
       <div className={styles.layout}>
         <div className={styles.panel}>
-          <h2 className={styles.panelHeading}>1. Pick the roster</h2>
-          <div className={styles.rosterGrid}>
-            {available.map((d) => (
-              <button
-                key={d.id}
-                type="button"
-                className={styles.rosterItem}
-                onClick={() => addSelected(d)}
-                disabled={selected.length >= MAX_DANCERS}
-              >
-                <span>{d.name}</span>
-                {d.crew ? <span className={styles.crewTag}>{d.crew}</span> : null}
-              </button>
-            ))}
-            {available.length === 0 ? <p className={styles.hint}>Everyone in the roster is already picked.</p> : null}
-          </div>
-          <div className={styles.inlineAdd}>
-            <TextInput placeholder="New dancer name" value={quickName} onChange={(e) => setQuickName(e.target.value)} />
-            <TextInput placeholder="Crew (optional)" value={quickCrew} onChange={(e) => setQuickCrew(e.target.value)} />
-            <Button type="button" onClick={handleQuickAdd} disabled={!quickName.trim()}>
-              Add
-            </Button>
-          </div>
-        </div>
-
-        <div className={styles.panel}>
-          <h2 className={styles.panelHeading}>2. Set the order &amp; rules</h2>
+          <h2 className={styles.panelHeading}>Battle lineup</h2>
 
           <Field label="Tournament name">
             <TextInput value={name} onChange={(e) => setName(e.target.value)} />
           </Field>
+
+          <div className={styles.inlineAdd}>
+            <TextInput placeholder="Dancer name" value={quickName} onChange={(e) => setQuickName(e.target.value)} />
+            <TextInput placeholder="College (optional)" value={quickCrew} onChange={(e) => setQuickCrew(e.target.value)} />
+            <Button type="button" onClick={handleQuickAdd} disabled={!quickName.trim() || selected.length >= MAX_DANCERS}>
+              Add
+            </Button>
+          </div>
 
           <div className={styles.selectedList}>
             {selected.map((s, i) => (
@@ -133,10 +112,10 @@ export function NewGame() {
                 </button>
               </div>
             ))}
-            {selected.length === 0 ? <p className={styles.hint}>Pick dancers from the roster on the left.</p> : null}
+            {selected.length === 0 ? <p className={styles.hint}>Add dancers above to build the lineup.</p> : null}
           </div>
           <p className={styles.hint}>
-            #1 is the opening defender, #2 the first challenger. {selected.length}/{MAX_DANCERS} selected (minimum{' '}
+            #1 is the opening defender, #2 the first challenger. {selected.length}/{MAX_DANCERS} added (minimum{' '}
             {MIN_DANCERS}).
           </p>
 

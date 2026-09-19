@@ -1,9 +1,7 @@
 .layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
-  max-width: 1200px;
+  grid-template-columns: 1fr;
+  max-width: 640px;
   margin: 24px auto 52px;
   padding: 0 clamp(16px, 4vw, 48px);
 }
@@ -25,44 +23,6 @@
   letter-spacing: 1.5px;
   padding-bottom: 14px;
   border-bottom: 2px dashed var(--border);
-}
-
-.rosterGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 380px;
-  overflow-y: auto;
-  margin-bottom: 12px;
-}
-
-.rosterItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-2);
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  color: var(--gold);
-}
-
-.rosterItem:hover {
-  border-color: var(--gold);
-}
-
-.rosterItemSelected {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.crewTag {
-  color: var(--text-dim);
-  font-size: 0.78rem;
-  font-family: 'Oswald', sans-serif;
 }
 
 .selectedList {
@@ -140,10 +100,4 @@
   color: var(--red);
   font-family: 'Oswald', sans-serif;
   font-size: 0.85rem;
-}
-
-@media (max-width: 780px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
 }

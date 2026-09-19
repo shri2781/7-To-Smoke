@@ -67,7 +67,6 @@ export const api = {
     me: () => request<{ authed: boolean }>('/auth/me'),
   },
   dancers: {
-    list: () => request<Dancer[]>('/dancers'),
     create: (data: { name: string; crew?: string | null }) =>
       request<Dancer>('/dancers', { method: 'POST', body: json(data) }),
     update: (id: string, data: { name?: string; crew?: string | null }) =>
