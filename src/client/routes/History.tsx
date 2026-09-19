@@ -39,7 +39,7 @@ export function History() {
               <span className={styles.name}>{t.name}</span>
               <span className={styles.date}>{new Date(t.heldOn).toLocaleDateString()}</span>
               <span>
-                {t.matchesPlayed}/{t.maxMatches} bouts
+                {t.matchesPlayed}/{t.maxMatches} battles
               </span>
               {t.winnerName ? <span className={styles.winnerTag}>{t.winnerName}</span> : null}
               <span className={styles.statusTag}>{t.status.replace('_', ' ')}</span>

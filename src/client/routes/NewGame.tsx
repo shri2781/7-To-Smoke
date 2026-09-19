@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useCreateDancer } from '../hooks/useDancers.js';
 import { useCreateTournament } from '../hooks/useTournament.js';
 import { ApiClientError } from '../apiClient/client.js';
-import { PosterHeader } from '../components/PosterHeader.js';
 import { Field, TextInput } from '../components/Input.js';
 import { Button } from '../components/Button.js';
 import type { Dancer } from '../apiClient/types.js';
@@ -79,7 +78,6 @@ export function NewGame() {
 
   return (
     <>
-      <PosterHeader subtitle="Set up the next battle" />
       <div className={styles.layout}>
         <div className={styles.panel}>
           <h2 className={styles.panelHeading}>Battle lineup</h2>
@@ -128,7 +126,7 @@ export function NewGame() {
                 onChange={(e) => setTargetScore(Number(e.target.value))}
               />
             </Field>
-            <Field label="Max bouts (regulation)">
+            <Field label="Max battles (regulation)">
               <TextInput
                 type="number"
                 min={1}

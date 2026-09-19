@@ -25,7 +25,7 @@ export function PosterHeader({
             <span className={styles.dot}>&bull;</span>
             <span>First to {targetScore}</span>
             <span className={styles.dot}>&bull;</span>
-            <span>{maxMatches} Max Bouts</span>
+            <span>{maxMatches} Max Battles</span>
           </div>
         ) : null}
       </div>

@@ -18,7 +18,7 @@ export function Rules() {
           <h2 className={styles.cardTitle}>How a battle works</h2>
           <p>
             One dancer starts as defender, one as the first challenger; everyone else waits in a queue. After every
-            bout the loser goes to the back of the queue, the winner stays (or becomes) defender and earns one point.
+            battle the loser goes to the back of the queue, the winner stays (or becomes) defender and earns one point.
             The next challenger is always whoever is at the front of the waiting line.
           </p>
         </div>
@@ -31,7 +31,7 @@ export function Rules() {
               automatically the instant it happens.
             </li>
             <li>
-              <strong>If the match cap is reached first</strong> (default: 27 bouts) and nobody has hit the target,
+              <strong>If the match cap is reached first</strong> (default: 27 battles) and nobody has hit the target,
               the app stops and shows the standings. It does <em>not</em> guess a tiebreak — an admin taps a name in
               the standings to crown the champion.
             </li>
@@ -49,8 +49,8 @@ export function Rules() {
             <li>Total wins</li>
             <li>Head-to-head record against opponents tied on wins</li>
             <li>Currently holding the throne</li>
-            <li>Fewer bouts played (same wins in fewer bouts ranks higher)</li>
-            <li>Most recent bout won</li>
+            <li>Fewer battles played (same wins in fewer battles ranks higher)</li>
+            <li>Most recent battle won</li>
             <li>Seed order (the position they were entered in)</li>
           </ol>
           <p>Any standings row broken by rule 2 or later shows a small "Tiebreak" footnote explaining why.</p>
@@ -59,7 +59,7 @@ export function Rules() {
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Undo, abandon, and history</h2>
           <ul>
-            <li>Undo removes only the most recent bout, including the one that just ended the tournament.</li>
+            <li>Undo removes only the most recent battle, including the one that just ended the tournament.</li>
             <li>Abandoning a tournament keeps it visible in Past Games.</li>
             <li>Renaming a dancer never changes how their name appears in a past recap.</li>
           </ul>

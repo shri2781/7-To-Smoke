@@ -34,7 +34,7 @@ function endReasonCopy(state: TournamentState): string {
     case 'target_reached':
       return `Reached ${state.targetScore} wins first.`;
     case 'cap_reached_manual':
-      return `Crowned by the admin after the ${state.maxMatches}-bout cap.`;
+      return `Crowned by the admin after the ${state.maxMatches}-battle cap.`;
     case 'forced':
       return 'Tournament ended early by the admin.';
     default:
@@ -99,7 +99,7 @@ export function Game() {
 
           {state.phase === 'awaiting_manual_winner' && state.status === 'in_progress' ? (
             <div className={styles.capNotice}>
-              {state.maxMatches} bouts of regulation are complete and nobody reached {state.targetScore}. Tap "Crown a
+              {state.maxMatches} battles of regulation are complete and nobody reached {state.targetScore}. Tap "Crown a
               champion" below and pick a name from the standings, the app won't guess a tiebreak for you.
             </div>
           ) : null}
@@ -134,7 +134,7 @@ export function Game() {
             ) : null}
             {state.matchesPlayed > 0 ? (
               <Button type="button" variant="secondary" onClick={() => setPending({ type: 'undo' })}>
-                Undo last bout
+                Undo last battle
               </Button>
             ) : null}
             {state.status === 'in_progress' ? (
@@ -184,10 +184,10 @@ export function Game() {
 
       {pending?.type === 'undo' ? (
         <ConfirmDialog
-          title="Undo last bout?"
+          title="Undo last battle?"
           body={
             state.status === 'completed'
-              ? 'This was the deciding bout, undoing it will re-open the tournament and clear the result.'
+              ? 'This was the deciding battle, undoing it will re-open the tournament and clear the result.'
               : 'This removes the most recently recorded result. This cannot be redone.'
           }
           confirmLabel="Undo"
