@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDancers, useCreateDancer } from '../hooks/useDancers.js';
 import { useCreateTournament } from '../hooks/useTournament.js';
-import { ApiClientError } from '../api/client.js';
+import { ApiClientError } from '../apiClient/client.js';
 import { PosterHeader } from '../components/PosterHeader.js';
 import { Field, TextInput } from '../components/Input.js';
 import { Button } from '../components/Button.js';
-import type { Dancer } from '../api/types.js';
+import type { Dancer } from '../apiClient/types.js';
 import styles from './NewGame.module.css';
 
 const MIN_DANCERS = 3;

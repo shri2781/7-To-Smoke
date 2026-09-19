@@ -51,7 +51,12 @@ export function createApp() {
   // and blow up the client's res.json() with a confusing parse error.
   app.use('/api', jsonNotFound);
 
-  if (process.env.NODE_ENV === 'production') {
+  // On Vercel, static assets are built and served separately via
+  // vercel.json's rewrites/CDN — this Express app only ever handles /api/*
+  // there, and `process.env.VERCEL` (set automatically at runtime for every
+  // Vercel deployment, including preview and `vercel dev`) is how it knows
+  // to skip this block. On Render, one process serves both, so it's needed.
+  if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
     const clientDist = path.resolve(__dirname, '../client');
     app.use(express.static(clientDist));
     // Express 5's wildcard syntax changed from '*' to a named splat param.

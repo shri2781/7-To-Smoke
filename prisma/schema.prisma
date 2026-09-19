@@ -1,5 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  // Driver adapters (constructing PrismaClient with Neon's serverless
+  // driver instead of Prisma's own TCP pool) are GA as of this version —
+  // no previewFeatures flag needed. Required to run safely on Vercel's
+  // serverless functions, where each invocation is its own short-lived
+  // process and a static connection pool sized for one persistent server
+  // is the wrong shape.
 }
 
 datasource db {

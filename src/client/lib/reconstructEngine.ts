@@ -1,6 +1,6 @@
 import { computeState } from '@shared/engine.js';
 import type { MatchInput, ParticipantInput, Rules } from '@shared/types.js';
-import type { TournamentState } from '../api/types.js';
+import type { TournamentState } from '../apiClient/types.js';
 
 /** Every field computeState needs travels inside a TournamentState
  * response already (standings carry seed/name/crew/dancerId, log carries

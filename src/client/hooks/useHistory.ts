@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../api/client.js';
+import { api } from '../apiClient/client.js';
 
 export function useTournamentHistory(status?: string) {
   return useQuery({
