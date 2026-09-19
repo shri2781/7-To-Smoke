@@ -1,0 +1,149 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 24px auto 52px;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.panelHeading {
+  margin: 0 0 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed var(--border);
+}
+
+.rosterGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.rosterItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+
+.rosterItem:hover {
+  border-color: var(--gold);
+}
+
+.rosterItemSelected {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.crewTag {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+.selectedList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.selectedItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.seedNumber {
+  font-family: 'Anton', sans-serif;
+  color: var(--red);
+  width: 22px;
+  text-align: center;
+}
+
+.selectedName {
+  flex: 1;
+  font-weight: 600;
+}
+
+.moveBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 4px;
+}
+
+.inlineAdd {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.settingsRow {
+  display: flex;
+  gap: 16px;
+}
+
+.settingsRow > * {
+  flex: 1;
+}
+
+.hint {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+.error {
+  margin-top: 14px;
+  color: var(--red);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 780px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

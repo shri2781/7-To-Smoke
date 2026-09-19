@@ -1,0 +1,46 @@
+.field {
+  display: block;
+  margin-top: 14px;
+}
+
+.label {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--gold);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.15);
+}
+
+.input::placeholder {
+  color: rgba(245, 197, 24, 0.4);
+}
+
+.error {
+  margin-top: 6px;
+  color: var(--red);
+  font-size: 0.8rem;
+  font-family: 'Oswald', sans-serif;
+}

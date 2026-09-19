@@ -1,0 +1,84 @@
+.title {
+  position: relative;
+  text-align: center;
+  padding: 56px 20px 40px;
+  background:
+    linear-gradient(180deg, rgba(6, 6, 7, 0.72), rgba(6, 6, 7, 0.96)),
+    url('/images/dance_bg.jpg') center 30% / cover no-repeat;
+  border-bottom: 4px solid var(--gold);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.frame {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.presents {
+  margin: 0 0 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.title h1 {
+  position: relative;
+  z-index: 2;
+  font-family: 'Anton', 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.5);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55), 6px 6px 14px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.title h1 span {
+  color: var(--red);
+  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.55);
+}
+
+.subtitle {
+  position: relative;
+  z-index: 2;
+  margin: 18px 0 0;
+  color: var(--text-dim);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.metaStrip {
+  position: relative;
+  z-index: 2;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.metaStrip .dot {
+  color: var(--red);
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .title {
+    padding: 44px 16px 30px;
+  }
+}

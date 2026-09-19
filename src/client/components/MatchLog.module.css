@@ -1,0 +1,65 @@
+.wrap {
+  margin-top: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+
+.heading {
+  margin: 0 0 16px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--border);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+}
+
+.entry:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.num {
+  font-family: 'Oswald', sans-serif;
+  color: var(--text-dim);
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.winner {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.throne {
+  margin-left: auto;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(245, 197, 24, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}

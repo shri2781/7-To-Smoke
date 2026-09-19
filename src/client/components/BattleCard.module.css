@@ -1,0 +1,148 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 0;
+  row-gap: 16px;
+  margin: 0 0 24px;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.55));
+}
+
+.corner {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 76px;
+  padding: 18px 16px;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  overflow-wrap: anywhere;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.corner:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: scale(1.03);
+}
+
+.corner:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.corner:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+/* King's corner — red, angled toward the VS badge */
+.kingSide {
+  grid-column: 1;
+  grid-row: 1;
+  background: linear-gradient(135deg, #ff3b30, var(--red-dark));
+  color: #fff3e0;
+  clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+  padding-right: 40px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+/* Challenger's corner — blue, angled the opposite way */
+.challengerSide {
+  grid-column: 3;
+  grid-row: 1;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #eef4ff;
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
+  padding-left: 40px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+.name {
+  display: block;
+}
+
+.streak {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.vs {
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+  min-height: 0;
+  padding: 0;
+  margin: 0 -26px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 4px var(--bg);
+  color: var(--gold);
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Anton', sans-serif;
+  animation: vsPulse 2s ease-in-out infinite;
+}
+
+@keyframes vsPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 4px rgba(245, 197, 24, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 10px rgba(245, 197, 24, 0);
+  }
+}
+
+.tapHint {
+  margin: 0 0 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+@media (max-width: 520px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .kingSide,
+  .challengerSide,
+  .vs {
+    grid-column: 1;
+  }
+  .kingSide {
+    grid-row: 1;
+    clip-path: none;
+    padding: 16px;
+    border-radius: 8px 8px 0 0;
+  }
+  .vs {
+    grid-row: 2;
+    justify-self: center;
+    margin: -18px 0;
+  }
+  .challengerSide {
+    grid-row: 3;
+    clip-path: none;
+    padding: 16px;
+    border-radius: 0 0 8px 8px;
+  }
+}
