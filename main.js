@@ -24,27 +24,19 @@ var div = document.createElement('div')
 
 var team0 = document.createElement('p')
 team0.id="first team"
+team0.setAttribute("onclick", "declareWinner(1)")
 div.appendChild(team0)   //first team
-var vs = div.appendChild(document.createElement('p'))      //vs 
+var vs = div.appendChild(document.createElement('p'))      //vs
 var team1 = document.createElement('p')
 team1.id="second team"
+team1.setAttribute("onclick", "declareWinner(0)")
 div.appendChild(team1)   //second team
 vs.textContent="VS"
 vs.id="vs"
 
-var text = document.createElement('input')
-text.type="number"
-text.placeholder = "Enter 0 or 1"
-text.name="winner"
-text.autocomplete="off"
-//submit input button
-var submit = document.createElement('input')
-submit.type="button"
-submit.name="submit"
-submit.value="Submit"
-submit.setAttribute("onclick", "next()");
-div.appendChild(text)
-div.appendChild(submit)
+var tapHint = document.createElement('p')
+tapHint.id="tap-hint"
+tapHint.textContent="Tap a corner to declare the winner"
 
 //adding each participant
 function addParticipant(){
@@ -81,6 +73,7 @@ function on8(){                      //after 8 values entered
     team0.textContent=names[l[0]]
     team1.textContent=names[l[1]]
     document.getElementById("two").appendChild(div)
+    document.getElementById("two").appendChild(tapHint)
 }
 
 
@@ -112,20 +105,13 @@ function change(n){
     }
 }
 
-function next(){       //value is checked and scoreboard is updated
-    var items = document.getElementsByClassName("input_table")  
-    var win=document.inputs.winner.value    //input is string
-        if (win=="1" || win=="0"){
-            alert("Submitted Successfully")
-            if(win=="1"){
-                items[l[0]].lastChild.textContent=Number(items[l[0]].lastChild.textContent)+1
-            } 
-            else{
-                items[l[1]].lastChild.textContent=Number(items[l[1]].lastChild.textContent)+1
-            }
-            change(Number(win))
-        }
-        else{
-            alert("Enter either 0 or 1")
-        }
+function declareWinner(win){       //win: 1 = left team wins, 0 = right team wins
+    var items = document.getElementsByClassName("input_table")
+    if(win==1){
+        items[l[0]].lastChild.textContent=Number(items[l[0]].lastChild.textContent)+1
+    }
+    else{
+        items[l[1]].lastChild.textContent=Number(items[l[1]].lastChild.textContent)+1
+    }
+    change(win)
 }
