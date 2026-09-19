@@ -17,7 +17,13 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': {
+      // Anchored regex, not a bare '/api' string key: Vite/http-proxy-
+      // middleware matches a plain string key by naive prefix, so '/api'
+      // would ALSO match a client source path like '/apiClient/...' or
+      // anything else starting with those four letters, silently
+      // hijacking it to the backend and 404ing. This matches only real
+      // "/api" or "/api/..." request paths.
+      '^/api($|/)': {
         target: 'http://localhost:3001',
         changeOrigin: true,
       },

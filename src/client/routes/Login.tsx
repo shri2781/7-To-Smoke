@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
-import { ApiClientError } from '../api/client.js';
+import { ApiClientError } from '../apiClient/client.js';
 import { Field, TextInput } from '../components/Input.js';
 import { Button } from '../components/Button.js';
 import styles from './Login.module.css';

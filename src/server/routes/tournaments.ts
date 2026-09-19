@@ -8,7 +8,7 @@ import {
   undoMatchSchema,
 } from '@shared/schemas.js';
 import type { EngineState } from '@shared/types.js';
-import { prisma } from '../db.js';
+import { prisma, withTransactionRetry } from '../db.js';
 import { ApiError, asyncHandler, badRequest, notFound } from '../lib/errors.js';
 import { requireParam } from '../lib/params.js';
 import {
@@ -188,7 +188,7 @@ tournamentsRouter.post(
 
     let updated: TournamentWithRelations;
     try {
-      updated = await prisma.$transaction(async (tx) => {
+      updated = await withTransactionRetry(() => prisma.$transaction(async (tx) => {
         await tx.match.create({
           data: {
             tournamentId: t.id,
@@ -224,7 +224,7 @@ tournamentsRouter.post(
         }
 
         return tx.tournament.findUniqueOrThrow({ where: { id: t.id }, include: withRelations });
-      });
+      }));
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
         // Someone else's write landed first for this exact matchNumber —
@@ -261,7 +261,7 @@ tournamentsRouter.delete(
       });
     }
 
-    const updated = await prisma.$transaction(async (tx) => {
+    const updated = await withTransactionRetry(() => prisma.$transaction(async (tx) => {
       await tx.match.delete({ where: { tournamentId_matchNumber: { tournamentId: t.id, matchNumber: last.matchNumber } } });
       if (t.status === 'completed') {
         // Undoing the final match of a completed tournament is the most
@@ -279,7 +279,7 @@ tournamentsRouter.delete(
         });
       }
       return tx.tournament.findUniqueOrThrow({ where: { id: t.id }, include: withRelations });
-    });
+    }));
 
     res.json(buildTournamentResponse(updated));
   }),
