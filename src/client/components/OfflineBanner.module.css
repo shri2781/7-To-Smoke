@@ -1,0 +1,14 @@
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 10px 16px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: #fff3e0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

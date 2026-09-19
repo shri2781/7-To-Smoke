@@ -1,0 +1,23 @@
+.header {
+  padding: 32px clamp(16px, 4vw, 48px) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+}

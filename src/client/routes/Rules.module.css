@@ -1,0 +1,57 @@
+.wrap {
+  max-width: 900px;
+  margin: 24px auto 52px;
+  padding: 0 clamp(16px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+
+.cardTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--border);
+  color: var(--gold);
+}
+
+.card p,
+.card li {
+  color: var(--text-dim);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.card ol,
+.card ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.dangerCard {
+  border-color: rgba(226, 0, 26, 0.4);
+}
+
+.dangerCard .cardTitle {
+  color: var(--red);
+}
+
+.dangerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}

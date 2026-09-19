@@ -1,0 +1,34 @@
+.credits {
+  position: relative;
+  text-align: center;
+  padding: 22px 18px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  background: var(--bg-alt);
+}
+
+.credits::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(circle at 12px 0, var(--bg) 8px, transparent 9px);
+  background-size: 24px 12px;
+  background-repeat: repeat-x;
+}
+
+.heart {
+  color: var(--red);
+}
+
+@media (max-width: 780px) {
+  /* The sidebar becomes a fixed bottom bar below this width — leave room
+     so the footer text isn't hidden underneath it. */
+  .credits {
+    padding-bottom: 76px;
+  }
+}

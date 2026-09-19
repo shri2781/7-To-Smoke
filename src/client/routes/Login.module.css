@@ -1,0 +1,50 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(6, 6, 7, 0.78), rgba(6, 6, 7, 0.96)),
+    url('/images/dance_bg.jpg') center 30% / cover no-repeat;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.title span {
+  color: var(--red);
+}
+
+.subtitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.error {
+  margin-top: 14px;
+  color: var(--red);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+}

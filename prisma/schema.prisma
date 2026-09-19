@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Pooled (PgBouncer) connection — used at runtime by the app.
+  url       = env("DATABASE_URL")
+  // Direct connection — used only by `prisma migrate`.
+  directUrl = env("DIRECT_URL")
+}
+
+enum TournamentStatus {
+  in_progress
+  completed
+  abandoned
+}
+
+enum EndReason {
+  target_reached
+  cap_reached_manual
+  forced
+}
+
+/// The reusable global roster. A Dancer is never hard-deleted — a past
+/// tournament's Participant rows snapshot the name/crew at the time, so
+/// renaming or retiring a Dancer never rewrites history.
+model Dancer {
+  id        String    @id @default(cuid())
+  name      String
+  crew      String?
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  participations Participant[]
+
+  @@index([deletedAt])
+}
+
+/// One tournament run. Created (and immediately set in_progress) only when
+/// the operator hits "Start" on the New Game screen — there is deliberately
+/// no draft/setup status stored in the database.
+model Tournament {
+  id     String           @id @default(cuid())
+  name   String
+  heldOn DateTime         @default(now())
+  status TournamentStatus @default(in_progress)
+
+  targetScore Int @default(7)
+  maxMatches  Int @default(27)
+
+  // Written exactly once, at the moment the tournament ends. Never touched
+  // during play — everything else about a live game is derived from the
+  // match log by src/shared/engine.ts.
+  winnerParticipantId String?
+  endReason           EndReason?
+  completedAt         DateTime?
+  /// Immutable snapshot of the final standings table, so a later change to
+  /// display-ranking rules can never silently reorder a past result.
+  finalStandings      Json?
+  abandonedAt         DateTime?
+
+  participants Participant[]
+  matches      Match[]
+
+  @@index([status])
+}
+
+/// A dancer's seat in one specific tournament. `seed` is the initial queue
+/// order (0 = first king, 1 = first challenger, ...); the unique constraint
+/// on it is load-bearing, not cosmetic — the entire "derive state by
+/// replaying the match log" design depends on participants having a total,
+/// deterministic order.
+model Participant {
+  id           String @id @default(cuid())
+  tournamentId String
+  dancerId     String
+  seed         Int
+
+  // Snapshotted at creation so a roster rename/retirement never rewrites
+  // a past recap.
+  displayName String
+  displayCrew String?
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  dancer     Dancer     @relation(fields: [dancerId], references: [id])
+
+  kingOfMatches       Match[] @relation("KingParticipant")
+  challengerOfMatches Match[] @relation("ChallengerParticipant")
+  wonMatches          Match[] @relation("WinnerParticipant")
+
+  @@unique([tournamentId, dancerId])
+  @@unique([tournamentId, seed])
+}
+
+/// One decided bout. Rows are append-only and immutable once written; undo
+/// deletes the highest matchNumber row rather than mutating anything.
+/// `winnerParticipantId` is NOT NULL by design — an "undecided match" isn't
+/// a real state in this app, pairings are derived, never scheduled.
+model Match {
+  id           String @id @default(cuid())
+  tournamentId String
+  matchNumber  Int
+
+  // Asserted, not authoritative: the server recomputes the expected pairing
+  // from the replayed queue and rejects a write whose king/challenger
+  // disagree with it. Kept as real columns so the log is self-describing
+  // and queryable without replaying.
+  kingParticipantId       String
+  challengerParticipantId String
+  winnerParticipantId     String
+
+  createdAt DateTime @default(now())
+
+  tournament  Tournament  @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  king        Participant @relation("KingParticipant", fields: [kingParticipantId], references: [id])
+  challenger  Participant @relation("ChallengerParticipant", fields: [challengerParticipantId], references: [id])
+  winner      Participant @relation("WinnerParticipant", fields: [winnerParticipantId], references: [id])
+
+  @@unique([tournamentId, matchNumber])
+  @@index([tournamentId])
+}

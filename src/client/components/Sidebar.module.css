@@ -1,0 +1,139 @@
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background: var(--bg-alt);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.brand {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.brand span {
+  color: var(--red);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--gold);
+  background: rgba(245, 197, 24, 0.06);
+}
+
+.linkActive {
+  color: var(--gold);
+  border-left-color: var(--gold);
+  background: rgba(245, 197, 24, 0.1);
+}
+
+.activeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  display: inline-block;
+  margin-left: auto;
+  box-shadow: 0 0 0 3px rgba(226, 0, 26, 0.25);
+}
+
+.logout {
+  margin: 12px 20px 0;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+@media (max-width: 780px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 0;
+    z-index: 50;
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .brand,
+  .logout {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .link {
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 4px;
+    border-left: none;
+    border-top: 3px solid transparent;
+    font-size: 0.62rem;
+    text-align: center;
+  }
+
+  .linkActive {
+    border-left-color: transparent;
+    border-top-color: var(--gold);
+  }
+
+  .activeDot {
+    margin: 0;
+    position: absolute;
+    top: 4px;
+  }
+}

@@ -1,0 +1,29 @@
+/* Design tokens — copied verbatim from the original style.css. Convention:
+   no raw hex color anywhere else in the client; everything reads one of
+   these custom properties. */
+:root {
+  --bg: #0b0b0c;
+  --bg-alt: #131315;
+  --surface: #1a1a1c;
+  --surface-2: #232326;
+  --gold: #f5c518;
+  --gold-dark: #d4a800;
+  --red: #e2001a;
+  --red-dark: #9c0012;
+  /* The challenger corner was hardcoded blue in the original CSS
+     (#2f80ff / #0b3fa8) — tokenized here so it's no longer the one
+     exception to "no raw hex outside this file". */
+  --blue: #2f80ff;
+  --blue-dark: #0b3fa8;
+  --text-dim: #b9b9bd;
+  --border: rgba(245, 197, 24, 0.22);
+  --radius: 14px;
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+  --torn: polygon(
+    0% 4%, 3% 0%, 7% 3%, 12% 0%, 17% 3%, 22% 0%, 28% 3%, 33% 0%,
+    39% 3%, 44% 0%, 50% 3%, 56% 0%, 61% 3%, 67% 0%, 72% 3%, 78% 0%,
+    83% 3%, 89% 0%, 94% 3%, 100% 0%, 100% 100%, 0% 100%
+  );
+
+  --sidebar-width: 220px;
+}

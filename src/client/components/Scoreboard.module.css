@@ -1,0 +1,119 @@
+.wrap {
+  clip-path: var(--torn);
+  padding-top: 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+}
+
+.heading {
+  margin: 0 0 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed var(--border);
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead td,
+.table thead th {
+  padding: 12px 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #1a1204;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.row td {
+  padding: 12px 10px;
+  color: var(--gold);
+  border-bottom: 2px dashed var(--border);
+  border-left: 3px solid transparent;
+}
+
+.row:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.row:hover td {
+  background: rgba(245, 197, 24, 0.08);
+}
+
+.rowKing td:first-child {
+  border-left-color: var(--red);
+}
+
+.rowChallenger td:first-child {
+  border-left-color: var(--blue);
+}
+
+.rank {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.crew {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-family: 'Oswald', sans-serif;
+}
+
+.tiebreak {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.wins {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--red);
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badgeKing {
+  background: rgba(226, 0, 26, 0.18);
+  color: #ff8a80;
+}
+
+.badgeChallenger {
+  background: rgba(47, 128, 255, 0.18);
+  color: #82b1ff;
+}

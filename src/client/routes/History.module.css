@@ -1,0 +1,85 @@
+.wrap {
+  max-width: 1200px;
+  margin: 24px auto 52px;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filterBtn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.filterBtnActive {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(245, 197, 24, 0.08);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.row:hover {
+  border-color: var(--gold);
+}
+
+.rowAbandoned {
+  opacity: 0.55;
+}
+
+.name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  flex: 1;
+  min-width: 160px;
+}
+
+.date {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.winnerTag {
+  font-family: 'Anton', sans-serif;
+  color: var(--red);
+}
+
+.statusTag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(245, 197, 24, 0.1);
+  color: var(--gold);
+}
